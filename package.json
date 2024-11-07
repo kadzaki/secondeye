@@ -19,6 +19,8 @@
     "@google-cloud/speech": "^6.7.0",
     "@google-cloud/text-to-speech": "^5.3.0",
     "@google/generative-ai": "^0.16.0",
+    "@genkit-ai/vertexai": "^0.5.17",
+    "@google-cloud/vertexai": "^1.9.0",
     "express": "^4.19.2",
     "genkit": "^0.5.9",
     "google-auth-library": "^9.13.0",
