@@ -5,7 +5,6 @@ import multer from 'multer';
 // Import the Genkit core libraries and plugins.
 import { generate } from '@genkit-ai/ai';
 import { configureGenkit } from '@genkit-ai/core';
-import { googleAI } from '@genkit-ai/googleai';
 import { GoogleAIFileManager, FileState } from "@google/generative-ai/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
@@ -14,10 +13,8 @@ import textToSpeech from '@google-cloud/text-to-speech';
 
 import { removeMarkdown } from './src/serverUtils.js';
 
-// Import models from the Google AI plugin. The Google AI API provides access to
-// several generative models. Here, we import Gemini 1.5 Flash.
-import { gemini15Flash } from '@genkit-ai/googleai';
-import { gemini15Pro } from '@genkit-ai/googleai';
+import { vertexAI } from '@genkit-ai/vertexai';
+import { gemini15Flash, gemini15Pro } from '@genkit-ai/vertexai';
 
 const app = express();
 app.use(express.json({ limit: "50mb" }));
@@ -32,11 +29,7 @@ const fileManager = new GoogleAIFileManager(geminiApiKey);
 
 configureGenkit({
   plugins: [
-    // Load the Google AI plugin. You can optionally specify your API key
-    // by passing in a config object; if you don't, the Google AI plugin uses
-    // the value from the GOOGLE_GENAI_API_KEY environment variable, which is
-    // the recommended practice.
-    googleAI(),
+    vertexAI({ projectId: 'annular-hexagon-269719', location: 'us-central1' }),
   ],
   // Log debug output to tbe console.
   logLevel: "debug",
